@@ -37,11 +37,10 @@ export class RecipeService {
         'recipe-image/2017/11/prosciutto-kale-butter-bean-stew.jpg?itok=eD-OyVk2',
       cur_version: {
         date: '09/11/11',
-        ingredients: '80g pack prosciutto\n' +
-          '\n' +
-          ', torn into pieces\n' +
+        ingredients: '80g pack prosciutto\n\n' +
+          'torn into pieces\n' +
           '2 tbsp olive oil\n' +
-          '\n' +
+          '<br/>' +
           '1 fennel bulb\n' +
           '\n' +
           ', sliced\n' +
@@ -138,12 +137,25 @@ export class RecipeService {
 
 
   findItem(sendId) {
-    console.log('findItem', sendId);
-    if (sendId === null) {
-      this.item = null;
-    } else {
+    if (sendId !== null) {
       this.item = this.Items.filter((item) => item.id === sendId);
-      console.log('findRecipeById', this.item);
+    } else {
+      this.item = [{
+        id: null,
+        title: null,
+        img: null,
+        cur_version: {
+          date: [],
+          ingredients: null,
+          recipe: null
+
+        },
+        prev_version: [{
+          date: [],
+          ingredients: null,
+          recipe: null
+        }]
+      }];
     }
   }
 }

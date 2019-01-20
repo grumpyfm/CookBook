@@ -14,7 +14,19 @@ export class RecipeComponent implements OnInit {
 
   ngOnInit() {
     this.check();
-    console.log('check', this.item);
+  }
+
+  onEdit() {
+    this.createRecipe();
+    this.check();
+    this.item[0].id = null;
+    console.log(this.item);
+
+  }
+
+  createRecipe() {
+    const d = new Date();
+    this.item[0].cur_version.date = [d.getDate(), d.getMonth(), d.getFullYear()];
   }
 
   check() {

@@ -1,33 +1,53 @@
-<div *ngIf="item!=null" class="container">
-  <span class="date">{{item[0].cur_version.date}}</span>
-  <input placeholder="title" type="text" value={{item[0].title}}>
-  <div class="d-flex flex-wrap">
-    <img alt="item[0].title" src={{item[0].img}}>
-  </div>
-  <div class="ingredients">
-    <textarea>{{item[0].cur_version.ingredients}}</textarea>
-  </div>
-  <div class="cooking">
-    <textarea>{{item[0].cur_version.recipe}}</textarea>
-  </div>
-  <div class="ExistingRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
-    <button class="btn btn-light addRecipe" type="button">Edit</button>
-    <button class="btn btn-light addRecipe" type="button">Previous versions</button>
-  </div>
-  <div class="NewRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
-    <button class="btn btn-light addRecipe" type="button">Cancel</button>
-    <button class="btn btn-light addRecipe" type="button">Save</button>
-  </div>
-  <div *ngFor="let i of item[0].prev_version">
-    <div class="date">
-      <span>{{i.date}}</span>
+<div class="container">
+  <div *ngIf="item[0].id===null" class="recipe ">
+    <form #newRecipeForm="ngForm">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="title">Title</label>
+        <input [(ngModel)]="item[0].title" class="form-control" id='title' name="title" ngModel required
+               type="text">
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="imgSrc">Image source</label>
+        <input [(ngModel)]="item[0].img" class="form-control" id='imgSrc' name="imgSrc" ngModel required
+               type="text">
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="cur_versionIngredients">Ingredients</label>
+        <input [(ngModel)]="item[0].cur_version.ingredients" class="form-control" id='cur_versionIngredients'
+               name="cur_versionIngredients" ngModel
+               required
+               type="text"
+               value={{item[0].cur_version.ingredients}}>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="cur_versionRecipe" required>Recipe</label>
+        <textarea [(ngModel)]="item[0].cur_version.recipe" class="form-control" id='cur_versionRecipe'
+                  name="cur_versionRecipe"
+                  ngModel></textarea>
+      </div>
+    </form>
+    <div class="NewRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
+      <button class="btn btn-light addRecipe" routerLink="" type="button">Cancel</button>
+      <button (click)="createRecipe()" [disabled]="newRecipeForm.form.invalid"
+              class="btn btn-light addRecipe" routerLink="" type="submit">Save
+      </button>
     </div>
-    <div class="ingredients">
-      <p>{{i.ingredients}}</p>
+    <div *ngIf="!newRecipeForm.valid" class="alert alert-danger">All inputs need to be filed!
     </div>
-    <div class="cooking">
-      <p>{{i.recipe}}</p>
+  </div>
+
+  <div *ngIf="item[0].id!==null">
+    <div class="row">
+      <div class="col-md-4"><img alt="" class="recipeImage" src={{item[0].img}}></div>
+      <div class="col-md-8">
+        <h3>{{item[0].title}}</h3>
+        <p>{{item[0].cur_version.ingredients}}</p>
+      </div>
+    </div>
+    <div>{{item[0].cur_version.recipe}}</div>
+    <div class="ExistingRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
+      <button (click)="onEdit()" class="btn btn-light addRecipe" type="button">Edit</button>
+      <button class="btn btn-light addRecipe" type="button">Previous versions</button>
     </div>
   </div>
 </div>
-

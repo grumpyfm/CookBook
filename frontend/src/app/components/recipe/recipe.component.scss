@@ -1,15 +1,11 @@
 $borderRadius: 7px;
 
-input {
-  border: none;
-}
 
 input:active {
   border-radius: $borderRadius;
 
 }
-
-textarea {
+.recipeImage{
   width: 100%;
-  min-height: 17em;
+  border-radius: 7px;
 }

@@ -14,10 +14,8 @@ export class RecipesListComponent implements OnInit {
   }
 
   loadRecipe = (id) => {
-    console.log('loadRecipe', id);
     this.recipeService.findItem(id);
   }
-
   ngOnInit() {
     this.Items = this.recipeService.Items;
   }
