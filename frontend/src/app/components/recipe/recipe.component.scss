@@ -1,0 +1,15 @@
+$borderRadius: 7px;
+
+input {
+  border: none;
+}
+
+input:active {
+  border-radius: $borderRadius;
+
+}
+
+textarea {
+  width: 100%;
+  min-height: 17em;
+}

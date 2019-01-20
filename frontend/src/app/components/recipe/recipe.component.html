@@ -1,0 +1,33 @@
+<div *ngIf="item!=null" class="container">
+  <span class="date">{{item[0].cur_version.date}}</span>
+  <input placeholder="title" type="text" value={{item[0].title}}>
+  <div class="d-flex flex-wrap">
+    <img alt="item[0].title" src={{item[0].img}}>
+  </div>
+  <div class="ingredients">
+    <textarea>{{item[0].cur_version.ingredients}}</textarea>
+  </div>
+  <div class="cooking">
+    <textarea>{{item[0].cur_version.recipe}}</textarea>
+  </div>
+  <div class="ExistingRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
+    <button class="btn btn-light addRecipe" type="button">Edit</button>
+    <button class="btn btn-light addRecipe" type="button">Previous versions</button>
+  </div>
+  <div class="NewRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
+    <button class="btn btn-light addRecipe" type="button">Cancel</button>
+    <button class="btn btn-light addRecipe" type="button">Save</button>
+  </div>
+  <div *ngFor="let i of item[0].prev_version">
+    <div class="date">
+      <span>{{i.date}}</span>
+    </div>
+    <div class="ingredients">
+      <p>{{i.ingredients}}</p>
+    </div>
+    <div class="cooking">
+      <p>{{i.recipe}}</p>
+    </div>
+  </div>
+</div>
+

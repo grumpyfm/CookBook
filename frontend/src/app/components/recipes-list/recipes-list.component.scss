@@ -1,0 +1,32 @@
+$lightGray: #f8f9fa;
+$borderRadius: 7px;
+
+.addRecipe {
+  margin-top: 10px;
+}
+
+.recipeList {
+  margin: 20px;
+  text-align: center;
+  border: 3px solid $lightGray;
+  border-radius: $borderRadius;
+
+  .listItem {
+    position: relative;
+    width: 20em;
+
+    .listDate {
+      border-radius: $borderRadius;
+      background-color: $lightGray;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+    .listImage {
+      border-radius: $borderRadius;
+      width: 100%;
+    }
+  }
+
+}
