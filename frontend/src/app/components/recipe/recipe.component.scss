@@ -1,6 +1,8 @@
 $borderRadius: 7px;
 
-
+.prev-version{
+  display: none;
+}
 input:active {
   border-radius: $borderRadius;
 

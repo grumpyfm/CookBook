@@ -1,34 +1,34 @@
 <div class="container">
-  <div *ngIf="item[0].id===null" class="recipe ">
+  <div *ngIf="item.editMode!==false," class="recipe ">
     <form #newRecipeForm="ngForm">
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="title">Title</label>
-        <input [(ngModel)]="item[0].title" class="form-control" id='title' name="title" ngModel required
+        <input [(ngModel)]="item.title" class="form-control" id='title' name="title" required
                type="text">
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="imgSrc">Image source</label>
-        <input [(ngModel)]="item[0].img" class="form-control" id='imgSrc' name="imgSrc" ngModel required
+        <input [(ngModel)]="item.img" class="form-control" id='imgSrc' name="imgSrc" required
                type="text">
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="cur_versionIngredients">Ingredients</label>
-        <input [(ngModel)]="item[0].cur_version.ingredients" class="form-control" id='cur_versionIngredients'
-               name="cur_versionIngredients" ngModel
+        <input [(ngModel)]="item.cur_version.ingredients" class="form-control" id='cur_versionIngredients'
+               name="cur_versionIngredients"
                required
                type="text"
-               value={{item[0].cur_version.ingredients}}>
+               value={{item.cur_version.ingredients}}>
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="cur_versionRecipe" required>Recipe</label>
-        <textarea [(ngModel)]="item[0].cur_version.recipe" class="form-control" id='cur_versionRecipe'
+        <textarea [(ngModel)]="item.cur_version.recipe" class="form-control" id='cur_versionRecipe'
                   name="cur_versionRecipe"
-                  ngModel></textarea>
+        ></textarea>
       </div>
     </form>
     <div class="NewRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
-      <button class="btn btn-light addRecipe" routerLink="" type="button">Cancel</button>
-      <button (click)="createRecipe()" [disabled]="newRecipeForm.form.invalid"
+      <button (click)="onCancel()" class="btn btn-light addRecipe" type="button">Cancel</button>
+      <button (click)="createRecipeDate()" [disabled]="newRecipeForm.form.invalid"
               class="btn btn-light addRecipe" routerLink="" type="submit">Save
       </button>
     </div>
@@ -36,18 +36,29 @@
     </div>
   </div>
 
-  <div *ngIf="item[0].id!==null">
+  <div *ngIf="item.editMode===false">
     <div class="row">
-      <div class="col-md-4"><img alt="" class="recipeImage" src={{item[0].img}}></div>
+      <div class="col-md-4"><img alt="" class="recipeImage" src={{item.img}}></div>
       <div class="col-md-8">
-        <h3>{{item[0].title}}</h3>
-        <p>{{item[0].cur_version.ingredients}}</p>
+        <h3>{{item.title}}</h3>
+        <p>{{item.cur_version.ingredients}}</p>
       </div>
     </div>
-    <div>{{item[0].cur_version.recipe}}</div>
+    <div>{{item.cur_version.recipe}}</div>
     <div class="ExistingRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
       <button (click)="onEdit()" class="btn btn-light addRecipe" type="button">Edit</button>
-      <button class="btn btn-light addRecipe" type="button">Previous versions</button>
+      <button class="btn btn-light addRecipe"(click)="showPrev_version()" type="button">Previous versions</button>
+    </div>
+  </div>
+  <div class="prev-version">
+    <p *ngIf="!item. prev_version">There is no previous versions of this recipe</p>
+    <div *ngIf="item. prev_version">
+      <div *ngFor="let i of item. prev_version">
+        <hr>
+        <span>{{i.date}}</span>
+      <p>{{i.ingredients}}</p>
+      <p>{{i.recipe}}</p>
+      </div>
     </div>
   </div>
 </div>
