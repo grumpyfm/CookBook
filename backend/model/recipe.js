@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 let RecipeSchema = new Schema({
     editMode: {
-        type: String,
-        trim: true,
+        type: Boolean
     },
     title: {
         type: String,
@@ -13,8 +12,8 @@ let RecipeSchema = new Schema({
         type: String,
     },
     cur_version: {
-        date: String,
-        ingredients:String,
+        date: Date,
+        ingredients:[],
         recipe: String
     },
     prev_version: []

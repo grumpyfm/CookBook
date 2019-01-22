@@ -1,13 +1,34 @@
 $borderRadius: 7px;
+$lightGray: #f8f9fa;
 
-.prev-version{
+
+.recipeDetails {
+  margin-top: 1em;
+
+  .recipeImage {
+    width: 100%;
+    border-radius: 7px;
+  }
+
+  .ingredientItem {
+    margin: 3px;
+    padding: 10px;
+    background-color: $lightGray;
+    border-radius: $borderRadius;
+  }
+
+  .textDescription {
+    margin: 1em 0;
+    text-align: justify;
+  }
+}
+
+.recipeButton {
+  margin: 3px;
+}
+
+.prev-version {
   display: none;
 }
-input:active {
-  border-radius: $borderRadius;
 
-}
-.recipeImage{
-  width: 100%;
-  border-radius: 7px;
-}
+

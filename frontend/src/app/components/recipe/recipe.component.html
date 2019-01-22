@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="item.editMode!==false," class="recipe ">
+  <div *ngIf="item.editMode!==false">
     <form #newRecipeForm="ngForm">
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="title">Title</label>
@@ -27,9 +27,9 @@
       </div>
     </form>
     <div class="NewRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
-      <button (click)="onCancel()" class="btn btn-light addRecipe" type="button">Cancel</button>
-      <button (click)="createRecipeDate()" [disabled]="newRecipeForm.form.invalid"
-              class="btn btn-light addRecipe" routerLink="" type="submit">Save
+      <button (click)="onCancel()" class="btn btn-light recipeButton" type="button">Cancel</button>
+      <button (click)="createRecipe()" [disabled]="newRecipeForm.form.invalid"
+              class="btn btn-light recipeButton" type="submit">Save
       </button>
     </div>
     <div *ngIf="!newRecipeForm.valid" class="alert alert-danger">All inputs need to be filed!
@@ -37,27 +37,36 @@
   </div>
 
   <div *ngIf="item.editMode===false">
-    <div class="row">
-      <div class="col-md-4"><img alt="" class="recipeImage" src={{item.img}}></div>
-      <div class="col-md-8">
-        <h3>{{item.title}}</h3>
-        <p>{{item.cur_version.ingredients}}</p>
+    <div class="recipeDetails">
+      <div class="row ">
+        <div class="col-md-4"><img alt="" class="recipeImage" src={{item.img}}></div>
+        <div class="col-md-8">
+          <h3>{{item.title}}</h3>
+          <div class="d-flex flex-wrap">
+            <div *ngFor="let ing of item.cur_version.ingredients">
+              <div class="ingredientItem">
+                {{ing}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="textDescription">{{item.cur_version.recipe}}</div>
+      <div class="d-flex justify-content-right flex-wrap justify-content-end">
+        <button (click)="onEdit()" class="btn btn-light recipeButton" type="button">Edit</button>
+        <button (click)="showPrev_version()" class="btn btn-light recipeButton" type="button">Previous versions</button>
       </div>
     </div>
-    <div>{{item.cur_version.recipe}}</div>
-    <div class="ExistingRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
-      <button (click)="onEdit()" class="btn btn-light addRecipe" type="button">Edit</button>
-      <button class="btn btn-light addRecipe"(click)="showPrev_version()" type="button">Previous versions</button>
-    </div>
   </div>
+
   <div class="prev-version">
-    <p *ngIf="!item. prev_version">There is no previous versions of this recipe</p>
-    <div *ngIf="item. prev_version">
-      <div *ngFor="let i of item. prev_version">
+    <p *ngIf="item. prev_version.length==0">There is no previous versions of this recipe</p>
+    <div *ngIf="item.prev_version.length!==0">
+      <div *ngFor="let i of item.prev_version">
         <hr>
         <span>{{i.date}}</span>
-      <p>{{i.ingredients}}</p>
-      <p>{{i.recipe}}</p>
+        <p>{{i.ingredients}}</p>
+        <p>{{i.recipe}}</p>
       </div>
     </div>
   </div>

@@ -17,14 +17,18 @@ export class RecipeService {
   }
 
   createNewRecipe(info) {
+
     return this.http.post('http:/api/newRecipe', info).pipe(map(res => this.item = res));
-    console.log('createNewRecipe');
   }
 
+  editRecipe(info) {
+    console.log('in service', info);
+    return this.http.post('http:/api/editRecipe', info).pipe(map(res => this.item = res));
+  }
 
   updateCurrentItem(sendId) {
     if (sendId !== null) {
-      this.item = this.Items.filter((item) => item.id === sendId)[0];
+      this.item = this.Items.filter((item) => item._id === sendId)[0];
     } else {
       this.item = {
         editMode: true,
@@ -33,11 +37,11 @@ export class RecipeService {
         img: null,
         cur_version: {
           date: null,
-          ingredients: null,
+          ingredients: [],
           recipe: null
 
         },
-        prev_version: null
+        prev_version: []
       };
     }
   }
