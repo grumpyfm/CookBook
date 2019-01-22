@@ -38,6 +38,7 @@ export class RecipeComponent implements OnInit {
 
   createRecipeDate() {
     const d = new Date();
-    this.item.cur_version.date = [d.getDate(), d.getMonth(), d.getFullYear()];
+    this.item.cur_version.date = d.getDate();
+    this.recipeService.createNewRecipe(this.item).subscribe((item) => this.item = item);
   }
 }
