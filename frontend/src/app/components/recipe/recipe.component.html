@@ -28,7 +28,7 @@
     </form>
     <div class="NewRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
       <button (click)="onCancel()" class="btn btn-light recipeButton" type="button">Cancel</button>
-      <button (click)="createRecipe()" [disabled]="newRecipeForm.form.invalid"
+      <button (click)="saveRecipe()" [disabled]="newRecipeForm.form.invalid"
               class="btn btn-light recipeButton" type="submit">Save
       </button>
     </div>

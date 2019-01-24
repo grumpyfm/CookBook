@@ -16,7 +16,7 @@ export class RecipeComponent implements OnInit {
   ngOnInit() {
     this.item = this.recipeService.item;
     this.clone = Object.assign({}, this.item);
-    console.log('clone', this.clone);
+
   }
 
   onEdit() {
@@ -37,7 +37,7 @@ export class RecipeComponent implements OnInit {
     this.item = this.clone;
   }
 
-  onSave() {
+  saveRecipe() {
     if (this.item._id !== null) {
       const obj = {
         data: this.clone.cur_version.date,
@@ -47,8 +47,7 @@ export class RecipeComponent implements OnInit {
       this.item.cur_version.date = new Date();
       this.item.editMode = false;
       this.item.prev_version.push(obj);
-      console.log(this.item);
-      this.recipeService.editRecipe(this.item);
+      this.recipeService.editRecipe(this.item).subscribe((item) => this.item = item);
     }
   }
 

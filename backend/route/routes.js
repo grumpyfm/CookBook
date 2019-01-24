@@ -13,22 +13,12 @@ router.route('/recipes')
         })
     });
 router.route('/editRecipe')
-    .post((req, res) => {
-        let prop = req.body;
-        Recipe.findOne({email: prop._id}, function (err, doc) {
-            console.log('in put');
-            if (!doc)
-                return 'Could not load Document';
-            else {
-                doc = p;
-
-                doc.save(function (err) {
-                    if (err)
-                        console.log('error');
-                    else
-                        console.log('success')
-                });
-            }
+    .put((req, res) => {
+        console.log('in put', req.body);
+        let query = { _id: req.body._id };
+        Recipe.findOneAndUpdate(query, req.body, {new: true}, (err, doc)=>{
+                if (err) return res.status(500).send(err);
+                return res.send(doc);
         });
     });
 

@@ -16,14 +16,14 @@ export class RecipeService {
     return this.http.get('http:/api/recipes').pipe(map(res => this.Items = res));
   }
 
-  createNewRecipe(info) {
-
-    return this.http.post('http:/api/newRecipe', info).pipe(map(res => this.item = res));
+  createNewRecipe(recipe) {
+console.log(recipe);
+    return this.http.post('http:/api/newRecipe', recipe).pipe(map(res => this.item = res));
   }
 
-  editRecipe(info) {
-    console.log('in service', info);
-    return this.http.post('http:/api/editRecipe', info).pipe(map(res => this.item = res));
+  editRecipe(recipe) {
+    console.log(recipe);
+    return this.http.put('http:/api/editRecipe', recipe).pipe(map(res => this.item = res));
   }
 
   updateCurrentItem(sendId) {
@@ -32,7 +32,7 @@ export class RecipeService {
     } else {
       this.item = {
         editMode: true,
-        id: null,
+        _id: null,
         title: null,
         img: null,
         cur_version: {
