@@ -3,7 +3,7 @@
     <form #newRecipeForm="ngForm">
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="title">Title</label>
-        <input [(ngModel)]="item.title" class="form-control" id='title' name="title" required
+        <input [(ngModel)]="item.title" class="form-control" id='title' name="title" required [disabled]="clone.title"
                type="text">
       </div>
       <div class="form-group row">
@@ -28,11 +28,12 @@
     </form>
     <div class="NewRecipeButtons d-flex justify-content-right flex-wrap justify-content-end">
       <button (click)="onCancel()" class="btn btn-light recipeButton" type="button">Cancel</button>
-      <button (click)="saveRecipe()" [disabled]="newRecipeForm.form.invalid"
+      <button (click)="onSave()" [disabled]="newRecipeForm.form.invalid"
               class="btn btn-light recipeButton" type="submit">Save
       </button>
     </div>
-    <div *ngIf="!newRecipeForm.valid" class="alert alert-danger">All inputs need to be filed!
+    <div *ngIf="this.error" class="alert alert-danger"> Recipe with such title already exists!</div>
+    <div *ngIf="!newRecipeForm.valid && newRecipeForm.touched" class="alert alert-danger">All inputs need to be filed!
     </div>
   </div>
 

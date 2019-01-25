@@ -7,6 +7,7 @@ let RecipeSchema = new Schema({
     },
     title: {
         type: String,
+        unique:true
     },
     img: {
         type: String,

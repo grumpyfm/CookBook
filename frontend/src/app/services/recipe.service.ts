@@ -17,13 +17,15 @@ export class RecipeService {
   }
 
   createNewRecipe(recipe) {
-console.log(recipe);
     return this.http.post('http:/api/newRecipe', recipe).pipe(map(res => this.item = res));
   }
 
   editRecipe(recipe) {
-    console.log(recipe);
     return this.http.put('http:/api/editRecipe', recipe).pipe(map(res => this.item = res));
+  }
+
+  checkIfExist(title) {
+    return this.Items.filter((obj) => obj.title === title).length !== 0;
   }
 
   updateCurrentItem(sendId) {
