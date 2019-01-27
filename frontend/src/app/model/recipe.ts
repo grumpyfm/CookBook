@@ -1,12 +1,11 @@
-export class RecipesList {
+export class Recipe {
   constructor(
-    public id: string,
+    public _id: string,
     public title: string,
+    public editMode: boolean,
     public img: string,
     public cur_version: any,
     public prev_version: any,
-    public phone: string,
-    public password: string,
   ) {
   }
 }

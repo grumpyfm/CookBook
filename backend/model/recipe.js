@@ -17,7 +17,12 @@ let RecipeSchema = new Schema({
         ingredients:[],
         recipe: String
     },
-    prev_version: []
+    prev_version: [{
+        data: Date,
+        ingredients:[],
+        recipe: String
+    }
+    ]
 });
 
 

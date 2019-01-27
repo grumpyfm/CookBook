@@ -3,7 +3,7 @@
     <form #newRecipeForm="ngForm">
       <div class="form-group row">
         <label class="col-sm-3 col-form-label" for="title">Title</label>
-        <input [(ngModel)]="item.title" class="form-control" id='title' name="title" required [disabled]="clone.title"
+        <input [(ngModel)]="item.title" [disabled]="clone.title" class="form-control" id='title' name="title" required
                type="text">
       </div>
       <div class="form-group row">
@@ -15,6 +15,7 @@
         <label class="col-sm-3 col-form-label" for="cur_versionIngredients">Ingredients</label>
         <input [(ngModel)]="item.cur_version.ingredients" class="form-control" id='cur_versionIngredients'
                name="cur_versionIngredients"
+               placeholder="Enter ingredients separated by comma"
                required
                type="text"
                value={{item.cur_version.ingredients}}>
@@ -40,7 +41,10 @@
   <div *ngIf="item.editMode===false">
     <div class="recipeDetails">
       <div class="row ">
-        <div class="col-md-4"><img alt="" class="recipeImage" src={{item.img}}></div>
+        <div class="col-md-4">
+          <img class="recipeImage" onError="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAZrzDT1fbNy6DMpVA0mPxzhi4zlZCwo4e0V1NG0qwMdVtC8tU'"
+               src={{item.img}}>
+        </div>
         <div class="col-md-8">
           <h3>{{item.title}}</h3>
           <div class="d-flex flex-wrap">
@@ -65,7 +69,6 @@
     <div *ngIf="item.prev_version.length!==0">
       <div *ngFor="let i of item.prev_version">
         <hr>
-        <span>{{i.date}}</span>
         <p>{{i.ingredients}}</p>
         <p>{{i.recipe}}</p>
       </div>

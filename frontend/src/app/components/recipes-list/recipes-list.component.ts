@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RecipeService} from '../../services/recipe.service';
+import {Recipe} from '../../model/recipe';
 
 
 @Component({
@@ -8,17 +9,17 @@ import {RecipeService} from '../../services/recipe.service';
   styleUrls: ['./recipes-list.component.scss']
 })
 export class RecipesListComponent implements OnInit {
-  Items: any;
+  Items: Recipe[];
 
   constructor(private recipeService: RecipeService) {
   }
 
-  loadRecipe = (id) => {
+  loadRecipe = (id: string) => {
     this.recipeService.updateCurrentItem(id);
   }
 
   ngOnInit() {
-    this.recipeService.getAllRecipes().subscribe((Items) => this.Items = Items);
+    this.recipeService.getAllRecipes().subscribe((Items: Recipe[]) => this.Items = Items);
   }
 
 }

@@ -27,8 +27,7 @@ router.route('/editRecipe')
 
 router.route('/newRecipe')
     .post((req, res) => {
-        let newRecipe = new Recipe(req.body);
-        newRecipe.save(function (err, doc) {
+        new Recipe(req.body).save().then( (doc, err) => {
             if (err) return res.status(500).send(err);
             // Made this for getting object id that was not returned on post
             Recipe.findOne({title: doc.title}, (err, rescipe) => {

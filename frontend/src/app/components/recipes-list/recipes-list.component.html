@@ -9,7 +9,9 @@
   <div class="recipeList" *ngFor="let item of Items">
     <div class="listItem" routerLink='recipe' (click)="(loadRecipe(item._id))">
       <span class="listDate">{{item.cur_version.date | date:'dd/MM/yyyy'}}</span>
-      <img class="listImage" src={{item.img}} alt={{item.title}}>
+      <img class="listImage" src={{item.img}}
+           onError="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAZrzDT1fbNy6DMpVA0mPxzhi4zlZCwo4e0V1NG0qwMdVtC8tU'"
+           alt={{item.title}}>
     </div>
     <p class="listTitle">{{item.title}}</p>
   </div>
